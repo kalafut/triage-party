@@ -62,6 +62,7 @@ type PullRequest struct {
 	AuthorAssociation   *string    `json:"author_association,omitempty"`
 	NodeID              *string    `json:"node_id,omitempty"`
 	RequestedReviewers  []*User    `json:"requested_reviewers,omitempty"`
+	Reactions           *Reactions `json:"reactions,omitempty"`
 
 	// RequestedTeams is populated as part of the PullRequestEvent.
 	// See, https://developer.github.com/v3/activity/events/types/#pullrequestevent for an example.

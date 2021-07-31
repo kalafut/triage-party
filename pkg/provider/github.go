@@ -187,6 +187,17 @@ func (p *GitHubProvider) PullRequestsList(ctx context.Context, sp SearchParams) 
 	opt := p.getPullRequestsListOptions(sp)
 	gpr, gr, err := p.client.PullRequests.List(ctx, sp.Repo.Organization, sp.Repo.Project, opt)
 	i = p.getPullRequestsList(gpr)
+
+	// Load reactions
+	for _, pr := range i {
+		iss, _, err := p.client.Issues.Get(ctx, sp.Repo.Organization, sp.Repo.Project, pr.GetNumber())
+		if err != nil {
+			return nil, nil, err
+		}
+		r := Reactions(*iss.Reactions)
+		pr.Reactions = &r
+	}
+
 	r = p.getResponse(gr)
 	return
 }

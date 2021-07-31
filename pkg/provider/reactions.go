@@ -22,6 +22,8 @@ type Reactions struct {
 	Confused   *int    `json:"confused,omitempty"`
 	Heart      *int    `json:"heart,omitempty"`
 	Hooray     *int    `json:"hooray,omitempty"`
+	Rocket     *int    `json:"rocket,omitempty"`
+	Eyes       *int    `json:"eyes,omitempty"`
 	URL        *string `json:"url,omitempty"`
 }
 

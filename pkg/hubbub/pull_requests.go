@@ -273,6 +273,12 @@ func (h *Engine) createPRSummary(ctx context.Context, sp provider.SearchParams, 
 	co.TimelineTotal = len(timeline)
 	h.addEvents(ctx, sp, co, timeline)
 
+	r := pr.Reactions
+	co.ReactionsTotal += r.GetTotalCount()
+	for k, v := range reactions(r) {
+		co.Reactions[k] += v
+	}
+
 	co.ReviewState = reviewState(pr, timeline, reviews)
 	co.Tags[reviewStateTag(co.ReviewState)] = true
 
